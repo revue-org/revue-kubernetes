@@ -35,7 +35,7 @@ To do this, you have to edit the `/etc/NetworkManager/system-connections/` file 
 ```bash
 [ipv4]
 method=manual
-address1=192.168.1.30/24,192.168.1.1
+address1=RASPBERRY_STATIC_IP(`E.g.192.168.1.30/24,192.168.1.1`)
 dns=192.168.1.1;8.8.8.8;
 ```
 And then
