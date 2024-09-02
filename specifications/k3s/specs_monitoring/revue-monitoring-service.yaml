@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: revue-monitoring
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: revue-monitoring
+  ports:
+    - name: monitoringport
+      port: 4001
+      targetPort: monitoringport

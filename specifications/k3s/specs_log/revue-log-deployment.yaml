@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: revue-log
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: revue-log
+  template:
+    metadata:
+      labels:
+        app: revue-log
+    spec:
+      containers:
+        - name: revue-log
+          image: letsdothisshared/revue-log:test
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4003
+              name: logport
+              protocol: TCP
+          env:
+            - name: KUBERNETES_SERVICE_HOST
+              value: "true"
+      restartPolicy: Always

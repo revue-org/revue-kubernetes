@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: revue-location-db
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: revue-location-db
+  ports:
+    - name: locationdbport
+      port: 27017
+      targetPort: 27017
+  

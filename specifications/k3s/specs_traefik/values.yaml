@@ -1,0 +1,9 @@
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+  kafka1:
+    address: ":9092"
+  kafka2:
+    address: ":9093"

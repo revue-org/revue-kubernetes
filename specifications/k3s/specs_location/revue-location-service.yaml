@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: revue-location
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: revue-location
+  ports:
+    - name: locationport
+      port: 4008
+      targetPort: locationport

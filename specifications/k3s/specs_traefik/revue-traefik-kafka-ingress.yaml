@@ -1,0 +1,29 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kafka-broker-ingress
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`revue-kafka-1`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: revue-kafka-1
+          port: 9094
+    - match: Host(`revue-kafka-2`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: revue-kafka-2
+          port: 9095
+    - match: Host(`revue-zookeeper-1`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: revue-zookeeper-1
+          port: 2181
+    - match: Host(`revue-zookeeper-2`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: revue-zookeeper-2
+          port: 2182

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: revue-frontend
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: revue-frontend
+  template:
+    metadata:
+      labels:
+        app: revue-frontend
+    spec:
+      containers:
+        - name: revue-frontend
+          image: letsdothisshared/revue-frontend:test
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: web
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              port: web
+              path: /
+      restartPolicy: Always

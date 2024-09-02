@@ -1,0 +1,8 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: ip-address-pool
+  namespace: metallb-system # namespace of the LB MetalLB
+spec:
+  addresses:
+  - 192.168.1.50-192.168.1.200

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: revue-monitoring
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: revue-monitoring
+  template:
+    metadata:
+      labels:
+        app: revue-monitoring
+    spec:
+      containers:
+        - name: revue-monitoring
+          image: letsdothisshared/revue-monitoring:test
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4001
+              name: monitoringport
+              protocol: TCP
+          env:
+            - name: KUBERNETES_SERVICE_HOST
+              value: "true"
+      restartPolicy: Always

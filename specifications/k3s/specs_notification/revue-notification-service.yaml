@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: revue-notification
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: revue-notification
+  ports:
+    - name: notifport
+      port: 4004
+      targetPort: notifport

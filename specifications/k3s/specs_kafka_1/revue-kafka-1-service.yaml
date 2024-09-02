@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: revue-kafka-1
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: revue-kafka-1
+  ports:
+    - name: internalkafka
+      port: 9092
+      targetPort: 9092
+    - name: externalkafka
+      port: 9094
+      targetPort: 9094

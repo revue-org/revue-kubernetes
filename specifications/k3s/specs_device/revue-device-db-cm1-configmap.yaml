@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  device-init.js: |
+    db = new Mongo().getDB('device')
+
+    db.createCollection('device')
+
+    db.device.insert([])
+kind: ConfigMap
+metadata:
+  annotations:
+    use-subpath: "true"
+  labels:
+    io.kompose.service: revue-device-db
+  name: revue-device-db-cm1

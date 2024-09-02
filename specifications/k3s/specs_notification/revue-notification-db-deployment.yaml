@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: revue-notification-db
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: revue-notification-db
+  template:
+    metadata:
+      labels:
+        app: revue-notification-db
+    spec:
+      containers:
+        - name: revue-notification-db
+          image: mongo
+          env:
+            - name: MONGO_INITDB_DATABASE
+              value: notification
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: example
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+          ports:
+            - containerPort: 27017
+              name: notifdbport
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data/db
+              name: revue-notification-data
+            - mountPath: /docker-entrypoint-initdb.d/notification-init.js
+              name: revue-notification-db-cm1
+              subPath: notification-init.js
+      restartPolicy: Always
+      volumes:
+        - name: revue-notification-data
+          persistentVolumeClaim:
+            claimName: revue-notification-data
+        - configMap:
+            items:
+              - key: notification-init.js
+                path: notification-init.js
+            name: revue-notification-db-cm1
+          name: revue-notification-db-cm1

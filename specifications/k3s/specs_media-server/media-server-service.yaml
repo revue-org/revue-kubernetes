@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: revue-media-server
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    app: revue-media-server
+  ports:
+    - name: tcp1
+      port: 8554
+      targetPort: tcp1
+    - name: tcp2
+      port: 1935
+      targetPort: tcp2
+    - name: tcp3
+      port: 8888
+      targetPort: tcp3
+    - name: tcp4
+      port: 8889
+      targetPort: tcp4
+    - name: udp1
+      port: 8890
+      protocol: UDP
+      targetPort: udp1
+    - name: udp2
+      port: 8189
+      protocol: UDP
+      targetPort: udp2

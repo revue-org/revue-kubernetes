@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: revue-device-db
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: revue-device-db
+  template:
+    metadata:
+      labels:
+        app: revue-device-db
+    spec:
+      containers:
+        - name: revue-device-db
+          image: mongo
+          env:
+            - name: MONGO_INITDB_DATABASE
+              value: device
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: example
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+          ports:
+            - containerPort: 27017
+              name: devicedbport
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data/db
+              name: revue-device-data
+            - mountPath: /docker-entrypoint-initdb.d/device-init.js
+              name: revue-device-db-cm1
+              subPath: device-init.js
+      restartPolicy: Always
+      volumes:
+        - name: revue-device-data
+          persistentVolumeClaim:
+            claimName: revue-device-data
+        - configMap:
+            items:
+              - key: device-init.js
+                path: device-init.js
+            name: revue-device-db-cm1
+          name: revue-device-db-cm1

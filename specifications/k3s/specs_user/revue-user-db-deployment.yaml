@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: revue-user-db
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: revue-user-db
+  template:
+    metadata:
+      labels:
+        app: revue-user-db
+    spec:
+      containers:
+        - name: revue-user-db
+          image: mongo
+          env:
+            - name: MONGO_INITDB_DATABASE
+              value: user
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: example
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: root
+          ports:
+            - containerPort: 27017
+              name: userdbport
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data/db
+              name: revue-user-data
+            - mountPath: /docker-entrypoint-initdb.d/user-init.js
+              name: revue-user-db-cm1
+              subPath: user-init.js
+      restartPolicy: Always
+      volumes:
+        - name: revue-user-data
+          persistentVolumeClaim:
+            claimName: revue-user-data
+        - configMap:
+            items:
+              - key: user-init.js
+                path: user-init.js
+            name: revue-user-db-cm1
+          name: revue-user-db-cm1

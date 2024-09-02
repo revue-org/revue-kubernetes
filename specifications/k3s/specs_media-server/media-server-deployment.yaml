@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: revue-media-server
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: revue-media-server
+  template:
+    metadata:
+      labels:
+        app: revue-media-server
+    spec:
+      containers:
+        - env:
+            - name: MTX_PROTOCOLS
+              value: tcp
+            - name: MTX_WEBRTCADDITIONALHOSTS
+              value: 0.0.0.0
+          image: bitnami/kafka:latest
+          name: revue-media-server
+          image: bluenviron/mediamtx:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8554
+              name: tcp1
+              protocol: TCP
+            - containerPort: 1935
+              name: tcp2
+              protocol: TCP
+            - containerPort: 8888
+              name: tcp3
+              protocol: TCP
+            - containerPort: 8889
+              name: tcp4
+              protocol: TCP
+            - containerPort: 8890
+              name: udp1
+              protocol: UDP
+            - containerPort: 8189
+              name: udp2
+              protocol: UDP
+      restartPolicy: Always

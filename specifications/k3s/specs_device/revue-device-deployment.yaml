@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: revue-device
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: revue-device
+  template:
+    metadata:
+      labels:
+        app: revue-device
+    spec:
+      containers:
+        - name: revue-device
+          image: letsdothisshared/revue-device:test
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4007
+              name: deviceport
+              protocol: TCP
+          env:
+            - name: KUBERNETES_SERVICE_HOST
+              value: "true"
+      restartPolicy: Always

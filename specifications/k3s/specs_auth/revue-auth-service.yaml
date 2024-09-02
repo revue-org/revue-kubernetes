@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: revue-auth
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: revue-auth
+  ports:
+    - name: authport
+      port: 4000
+      targetPort: authport
