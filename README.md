@@ -1,4 +1,4 @@
-# Revue K3s Deployment
+# Revue: Kubernetes Deployment
 
 [K3s](https://k3s.io/) has been chosen as the orchestrator for the deployment of the Revue system,
 a lightweight Kubernetes distribution that is easy to install and operate.
@@ -61,7 +61,6 @@ sudo iptables -F
 
 Now everything is ready to install K3s in the primary node, to install it simply run:
 ```bash
-```bash
 curl -sfL https://get.k3s.io | K3s_KUBECONFIG_MODE="644" sh -
 ```
 
@@ -91,7 +90,7 @@ kubectl get nodes
 Now one more part is needed to complete the cluster, the Load Balancer.
 In this guide, [MetalLB](https://metallb.universe.tf/) is used, a load balancer for bare metal Kubernetes clusters.
 
-Command to a Load Balancer:
+Command to add a Load Balancer:
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.8/config/manifests/metallb-native.yaml
 ```
