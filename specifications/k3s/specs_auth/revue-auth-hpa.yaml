@@ -1,15 +1,3 @@
-#configurazione da applicare sui singoli file di Deployment
-#togliere replicas e specificare il campo resources come sotto.
-#a livello di indentazione, il campo resources deve essere allineato con il campo ports
-
-resources:                     # Add resource requests and limits
-  requests:
-    memory: "512Mi"
-    cpu: "500m"
-  limits:
-    memory: "1Gi"
-    cpu: "1000m"
-
 # singolo HPA per il deployment revue-service-deployment
 # in questo caso si scalano i pod in base all'utilizzo di CPU e memoria, ENTRAMBE
 apiVersion: autoscaling/v2
@@ -21,8 +9,8 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: revue-service-deployment
-  minReplicas: 2                           # Minimum number of replicas
+    name: revue-auth
+  minReplicas: 1                           # Minimum number of replicas
   maxReplicas: 10                          # Maximum number of replicas
   metrics:
     - type: Resource
