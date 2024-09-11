@@ -18,10 +18,4 @@ spec:
         name: cpu                            # Scale based on CPU usage
         target:
           type: Utilization
-          averageUtilization: 60             # Target 70% CPU utilization
-    - type: Resource
-      resource:
-        name: memory                         # Scale based on memory usage
-        target:
-          type: Utilization
-          averageUtilization: 60             # Target 75% memory utilization
+          averageUtilization: 30             # Target 70% CPU utilization

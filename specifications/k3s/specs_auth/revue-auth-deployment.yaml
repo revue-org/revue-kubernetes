@@ -22,10 +22,8 @@ spec:
               protocol: TCP
           resources: # Add resource requests and limits
             requests:
-              memory: "256Mi"
               cpu: "250m"
             limits:
-              memory: "768Mi"
               cpu: "700m"
           env:
             - name: KUBERNETES_SERVICE_HOST
