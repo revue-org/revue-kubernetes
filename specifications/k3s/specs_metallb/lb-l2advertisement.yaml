@@ -6,6 +6,3 @@ metadata:
 spec:
   ipAddressPools:
   - ip-address-pool
-  nodeSelectors:
-    - matchLabels:
-        kubernetes.io/hostname: "master"
