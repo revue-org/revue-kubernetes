@@ -18,7 +18,7 @@ spec:
             - name: MTX_PROTOCOLS
               value: tcp
             - name: MTX_WEBRTCADDITIONALHOSTS
-              value: 0.0.0.0
+              value: 192.168.5.10
           image: bitnami/kafka:latest
           name: revue-media-server
           image: bluenviron/mediamtx:latest

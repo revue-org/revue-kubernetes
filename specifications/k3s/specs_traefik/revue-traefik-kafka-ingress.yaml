@@ -11,12 +11,12 @@ spec:
       kind: Rule
       services:
         - name: revue-kafka-1
-          port: 9094
+          port: 9092
     - match: Host(`revue-kafka-2`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: revue-kafka-2
-          port: 9095
+          port: 9093
     - match: Host(`revue-zookeeper-1`) && PathPrefix(`/`)
       kind: Rule
       services:

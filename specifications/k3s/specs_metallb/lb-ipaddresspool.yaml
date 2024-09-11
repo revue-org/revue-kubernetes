@@ -5,4 +5,4 @@ metadata:
   namespace: metallb-system # namespace of the LB MetalLB
 spec:
   addresses:
-  - 192.168.1.50-192.168.1.200
+  - 192.168.5.50-192.168.5.200

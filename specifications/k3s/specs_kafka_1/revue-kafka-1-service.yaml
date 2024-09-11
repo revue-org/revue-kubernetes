@@ -4,7 +4,7 @@ metadata:
   name: revue-kafka-1
   namespace: default
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: revue-kafka-1
   ports:
