@@ -11,17 +11,17 @@ spec:
     kind: Deployment
     name: revue-auth
   minReplicas: 1                           # Minimum number of replicas
-  maxReplicas: 10                          # Maximum number of replicas
+  maxReplicas: 5                           # Maximum number of replicas
   metrics:
     - type: Resource
       resource:
         name: cpu                            # Scale based on CPU usage
         target:
           type: Utilization
-          averageUtilization: 70             # Target 70% CPU utilization
+          averageUtilization: 60             # Target 70% CPU utilization
     - type: Resource
       resource:
         name: memory                         # Scale based on memory usage
         target:
           type: Utilization
-          averageUtilization: 75             # Target 75% memory utilization
+          averageUtilization: 60             # Target 75% memory utilization
