@@ -1,13 +1,13 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: revue-auth-hpa
+  name: revue-location-hpa
   namespace: default
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: revue-auth
+    name: revue-location
   minReplicas: 1
   maxReplicas: 5
   metrics:

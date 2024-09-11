@@ -4,7 +4,6 @@ metadata:
   name: revue-user
   namespace: default
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: revue-user
@@ -21,6 +20,11 @@ spec:
             - containerPort: 4006
               name: userport
               protocol: TCP
+          resources:
+            requests:
+              cpu: "250m"
+            limits:
+              cpu: "700m"
           env:
             - name: KUBERNETES_SERVICE_HOST
               value: "true"

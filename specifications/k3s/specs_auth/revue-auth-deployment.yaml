@@ -20,7 +20,7 @@ spec:
             - containerPort: 4000
               name: authport
               protocol: TCP
-          resources: # Add resource requests and limits
+          resources:
             requests:
               cpu: "250m"
             limits:

@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: revue-auth-hpa
+  name: revue-frontend-hpa
   namespace: default
 spec:
   scaleTargetRef:

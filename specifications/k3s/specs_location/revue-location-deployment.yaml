@@ -4,7 +4,6 @@ metadata:
   name: revue-location
   namespace: default
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: revue-location
@@ -21,6 +20,11 @@ spec:
             - containerPort: 4008
               name: locationport
               protocol: TCP
+          resources:
+            requests:
+              cpu: "250m"
+            limits:
+              cpu: "700m"
           env:
             - name: KUBERNETES_SERVICE_HOST
               value: "true"

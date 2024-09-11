@@ -4,7 +4,6 @@ metadata:
   name: revue-frontend
   namespace: default
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: revue-frontend
@@ -21,6 +20,11 @@ spec:
             - containerPort: 8080
               name: web
               protocol: TCP
+          resources:
+            requests:
+              cpu: "250m"
+            limits:
+              cpu: "700m"
           readinessProbe:
             httpGet:
               port: web
