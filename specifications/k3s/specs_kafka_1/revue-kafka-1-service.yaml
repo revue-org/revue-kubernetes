@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: revue-kafka-1
   namespace: default
+  labels:
+    app: revue-kafka-1
 spec:
   type: LoadBalancer
   selector:

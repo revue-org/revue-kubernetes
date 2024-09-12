@@ -1,0 +1,35 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: ip-address-pool-kafka-1
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.5.202/32
+  avoidBuggyIPs: true
+  serviceAllocation:
+    priority: 1
+    namespaces:
+      - default
+    serviceSelectors:
+      - matchExpressions:
+          - {key: app, operator: In, values: [revue-kafka-1]}
+
+---
+
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: ip-address-pool-kafka-2
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.5.203/32
+  avoidBuggyIPs: true
+  serviceAllocation:
+    priority: 1
+    namespaces:
+      - default
+    serviceSelectors:
+      - matchExpressions:
+          - {key: app, operator: In, values: [revue-kafka-2]}
