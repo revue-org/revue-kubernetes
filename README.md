@@ -1,4 +1,6 @@
-# Revue: Kubernetes Deployment
+# K3s cluster running on Raspberries PI 5
+
+In this repo, a tutorial for creating a cluster on Raspberries PI 5 and configurations file for Revue can be found. 
 
 [K3s](https://k3s.io/) has been chosen as the orchestrator for the deployment of the Revue system,
 a lightweight Kubernetes distribution that is easy to install and operate.
@@ -6,23 +8,7 @@ In this repo, an example of cluster and all configurations
 needed to deploy the system are provided and a description for every component of the system.
 Moreover, you can find the step-by-step guide to create a K3s cluster on a Raspberry PIs 5.
 
-Since Revue has a microservices architecture, 
-it is necessary to create several configuration files for each service following their specific requirements.
-
-For core services of the system, the following configurations are provided:
-- **Deployment**: responsible for creating pods and managing their lifecycle.
-- **Service**: type ClusterIP, with no need to be exposed outside the cluster due to the presence of the Ingress Controller (API Gateway).
-- **Ingress**: to expose the service outside the cluster through the Ingress Controller.
-- **Persistent Volume Claim**: to store data that needs to persist even after the pod is deleted.
-- **ConfigMap**: to store configuration data and database initialization scripts.
-
-Every service is accessible through the Ingress Controller, 
-which is responsible for routing the requests to the correct service.
-In this case, the Ingress Controller is [Traefik](https://traefik.io/), 
-a modern HTTP reverse proxy and load balancer that can be used to expose services outside the cluster.
-
-
-## Step-by-step guide to create a K3s cluster on Raspberry PIs 5
+## Step-by-step guide to create the cluster
 
 ### Prerequisites
 - At least two Raspberry PIs that can communicate with each other.
@@ -117,8 +103,15 @@ kubectl apply -f your_file.yaml
 
 ## Other useful information
 
-### Socket
-Sockets are yet supported by Traefik, you have only to make sure that the transport is set to `websocket` in the configuration.
+### ARP problem
+Running the cluster on Raspberries can bring to a problematic about ARP tables. 
+This happen because Raspberries by default does not respond to ARP request when using Wi-Fi. 
+The possible workaround is to set the raspberries in promiscuous mode runnning the command: 
+```bash
+sudo ifconfig <<DEVICE>> promisc
+E.g. sudo ifconfig wlan0 promisc
+```
+More info in the [MetalLB troubleshooting](https://metallb.io/troubleshooting/) section.
 
 ### Traefik installation
 To install Traefik on the cluster, you can use Helm, a package manager for Kubernetes.
@@ -137,6 +130,28 @@ helm repo update
 helm upgrade traefik traefik/traefik -f /path/to/your/values.yaml
 ```
 
+### Grafana installation
+To install Grafana Helm has been used.
+
+```bash
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install GRAFANA_NAME grafana/grafana -f prometheus/grafana-values.yml --namespace YOUR_NAMESPACE
+````
+
+### Prometheus installation
+Also for Prometheus Helm has been used.
+
+```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install prometheus prometheus-community/prometheus -f prometheus/prometheus-values.yml
+```
+
+### Socket
+Sockets are yet supported by Traefik, you have only to make sure that the transport is set to `websocket` in the configuration.
+
+
 ### SSH
 To access the Raspberry PIs, you can use the `ssh` command,
 but to make it easier, you can add the Raspberry PIs to the `~/.ssh/config` file.
@@ -146,3 +161,6 @@ To copy some configuration files in the Raspberry PIs, you can use the `scp` com
 scp -r your_folder/ pi@your_pi_ip:/path/to/destination
 ```
 
+## Revue deployment
+
+Take a look to the [deployment section](link-to-deployment-section) of the Revue repository for a detailed guide to run Revue on the cluster
