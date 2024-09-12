@@ -6,3 +6,4 @@ metadata:
 spec:
   ipAddressPools:
   - ip-address-pool
+  - ip-address-pool-media-server
