@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: revue-media-server
   namespace: default
+  labels:
+    app: revue-media-server
 spec:
   type: LoadBalancer
   selector:
