@@ -13,4 +13,4 @@ spec:
       - default
     serviceSelectors:
       - matchExpressions:
-          - {key: name, operator: In, values: [traefik]}
+          - {key: app.kubernetes.io/name, operator: In, values: [traefik]}
