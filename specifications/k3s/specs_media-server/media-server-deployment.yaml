@@ -18,7 +18,7 @@ spec:
             - name: MTX_PROTOCOLS
               value: tcp
             - name: MTX_WEBRTCADDITIONALHOSTS
-              value: 192.168.5.10
+              value: 192.168.5.53,192.168.5.10,10.43.133.52,10.43.0.1,revue-media-server
           name: revue-media-server
           image: bluenviron/mediamtx:latest
           imagePullPolicy: Always
