@@ -8,7 +8,7 @@ spec:
     - 192.168.5.201/32
   avoidBuggyIPs: true
   serviceAllocation:
-    priority: 1
+    priority: 2
     namespaces:
       - default
     serviceSelectors:
