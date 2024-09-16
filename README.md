@@ -2,6 +2,8 @@
 
 In this repository, you can find all the configuration files needed to deploy the Revue within a Kubernetes cluster.
 
+Remember that to deploy Revue, you have to use `deploy` script present in the main [Revue repository](https://github.com/revue-org/revue).
+
 In the following, you can find a step-by-step guide to create a [K3s](https://k3s.io/) (a lightweight Kubernetes distribution) cluster on Raspberry PIs 5.
 
 ## Creating a K3s cluster running on Raspberries PI 5
@@ -126,49 +128,17 @@ E.g. sudo ifconfig wlan0 promisc
 
 More info in the [MetalLB troubleshooting](https://metallb.io/troubleshooting/) section.
 
-### Traefik installation
+### Helm
 
-To install Traefik on the cluster, you can use Helm, a package manager for Kubernetes.
-To install Helm, you can follow the official guide [here](https://helm.sh/docs/intro/install/).
+To properly run Revue, you need to install Helm, a package manager for Kubernetes.
 
-N.B. If you want to use Helm,
-you have to set the `KUBECONFIG` environment variable to the path of the K3s configuration file:
+Helm is used to install Traefik, Prometheus and Grafana, which are needed to run Revue.
+
+Note that you have to set the `KUBECONFIG` environment variable to the path of the K3s configuration file:
 
 ```bash
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 ```
-
-Now install Traefik by running:
-
-```bash
-helm repo add traefik https://helm.traefik.io/traefik
-helm repo update
-helm upgrade traefik traefik/traefik -f /path/to/your/values.yaml
-```
-
-### Grafana installation
-
-To install Grafana Helm has been used.
-
-```bash
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update
-helm install GRAFANA_NAME grafana/grafana -f prometheus/grafana-values.yml --namespace YOUR_NAMESPACE
-```
-
-### Prometheus installation
-
-Also for Prometheus Helm has been used.
-
-```bash
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo update
-helm install prometheus prometheus-community/prometheus -f prometheus/prometheus-values.yml
-```
-
-### Socket
-
-Sockets are yet supported by Traefik, you have only to make sure that the transport is set to `websocket` in the configuration.
 
 ### SSH
 
