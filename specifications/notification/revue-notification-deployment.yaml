@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: revue-notification
-          image: letsdothisshared/revue-notification:test
+          image: letsdothisshared/revue-notification:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 4004

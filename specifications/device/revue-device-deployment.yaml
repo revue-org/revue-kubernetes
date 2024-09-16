@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: revue-device
-          image: letsdothisshared/revue-device:test
+          image: letsdothisshared/revue-device:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 4007

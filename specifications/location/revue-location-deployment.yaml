@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: revue-location
-          image: letsdothisshared/revue-location:test
+          image: letsdothisshared/revue-location:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 4008

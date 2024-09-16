@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: revue-monitoring
-          image: letsdothisshared/revue-monitoring:test
+          image: letsdothisshared/revue-monitoring:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 4001

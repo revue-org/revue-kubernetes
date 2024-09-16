@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: revue-frontend
-          image: letsdothisshared/revue-frontend:test
+          image: letsdothisshared/revue-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

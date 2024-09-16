@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: revue-alarm
-          image: letsdothisshared/revue-alarm:test
+          image: letsdothisshared/revue-alarm:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 4002
