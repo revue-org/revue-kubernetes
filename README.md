@@ -118,13 +118,22 @@ kubectl apply -f your_file.yaml
 ### ARP problem
 
 Running the cluster on Raspberries can bring to a problematic about ARP tables.
-This happen because Raspberries by default does not respond to ARP request when using Wi-Fi.
-The possible workaround is to set the raspberries in promiscuous mode runnning the command:
+This happens because Raspberries by default do not respond to ARP request when using Wi-Fi.
+The possible workaround is to set the raspberries in promiscuous mode running the command:
 
 ```bash
 sudo ifconfig <<DEVICE>> promisc
-E.g. sudo ifconfig wlan0 promisc
 ```
+E.g. sudo ifconfig wlan0 promisc
+
+What is suggested to do is to add the following line at the end of the `/etc/rc.local` file, before the `exit(0)` so that the command will be executed at every boot.
+
+To check if the ARP problem is present or to check if the command has been executed during the boot, you can run the following command:
+
+```bash
+ip link show <DEVICE>
+```
+In the output the `PROMISC` flag should be present.
 
 More info in the [MetalLB troubleshooting](https://metallb.io/troubleshooting/) section.
 
