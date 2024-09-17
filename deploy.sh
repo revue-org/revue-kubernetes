@@ -23,6 +23,10 @@ helm install traefik traefik/traefik --namespace=default --values configuration-
 helm install prometheus prometheus-community/prometheus -f configuration-files/prometheus-values.yaml --namespace default
 helm install grafana grafana/grafana -f configuration-files/grafana-values.yaml --namespace default
 
+# Apply MetalLB specifications first
+echo "Applying MetalLB specifications..."
+find specifications/metallb -name '*.yaml' -exec kubectl apply -f {} \;
+
 # Apply all YAML configuration files in the 'specifications' folder
 echo "Applying all Kubernetes specifications..."
 find specifications -name '*.yaml' -exec kubectl apply -f {} \;
