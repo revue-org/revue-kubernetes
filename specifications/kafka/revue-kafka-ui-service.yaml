@@ -6,7 +6,7 @@ metadata:
   labels:
     app: revue-kafka-ui
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: revue-kafka-ui
   ports:

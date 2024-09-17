@@ -7,11 +7,26 @@ spec:
   entryPoints:
     - web
   routes:
+    - match: Host(`revue-prometheus`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: prometheus-server
+          port: 80
     - match: Host(`revue-grafana`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: grafana
           port: 80
+    - match: Host(`revue-kafka-ui`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: revue-kafka-ui
+          port: 8082
+    - match: Host(`revue-traefik`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: traefik
+          port: 8081
     - match: Host(`revue-frontend`) && PathPrefix(`/`)
       kind: Rule
       services:
