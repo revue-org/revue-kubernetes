@@ -1,0 +1,12 @@
+# Default values at https://artifacthub.io/packages/helm/traefik/traefik?modal=values
+ingressRoute:
+  dashboard:
+    enabled: true
+
+ports:
+  # The port used by the dashboard
+  traefik:
+    port: 8081
+    expose:
+      default: true
+    exposedPort: 8081

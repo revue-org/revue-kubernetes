@@ -19,9 +19,9 @@ helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 
 # Install Traefik with the specified namespace
-helm install traefik traefik/traefik --namespace=default # --values gateway/traefik-values.yaml
-helm install prometheus prometheus-community/prometheus -f prometheus/prometheus-values.yaml --namespace default
-helm install grafana grafana/grafana -f prometheus/grafana-values.yaml --namespace default
+helm install traefik traefik/traefik --namespace=default --values configuration-files/traefik-values.yaml
+helm install prometheus prometheus-community/prometheus -f configuration-files/prometheus-values.yaml --namespace default
+helm install grafana grafana/grafana -f configuration-files/grafana-values.yaml --namespace default
 
 # Apply all YAML configuration files in the 'specifications' folder
 echo "Applying all Kubernetes specifications..."
