@@ -7,6 +7,11 @@ spec:
   entryPoints:
     - web
   routes:
+    - match: Host(`revue-grafana`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: grafana
+          port: 80
     - match: Host(`revue-frontend`) && PathPrefix(`/`)
       kind: Rule
       services:
