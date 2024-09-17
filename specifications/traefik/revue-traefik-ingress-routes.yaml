@@ -17,31 +17,16 @@ spec:
       services:
         - name: revue-auth
           port: 4000
-    - match: Host(`revue-auth-db`) && PathPrefix(`/`)
-      kind: Rule
-      services:
-        - name: revue-auth-db
-          port: 27017
     - match: Host(`revue-user`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: revue-user
           port: 4006
-    - match: Host(`revue-user-db`) && PathPrefix(`/`)
-      kind: Rule
-      services:
-        - name: revue-user-db
-          port: 27017
     - match: Host(`revue-device`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: revue-device
           port: 4007
-    - match: Host(`revue-device-db`) && PathPrefix(`/`)
-      kind: Rule
-      services:
-        - name: revue-device-db
-          port: 27017
     - match: Host(`revue-monitoring`) && PathPrefix(`/`)
       kind: Rule
       services:
@@ -52,38 +37,18 @@ spec:
       services:
         - name: revue-notification
           port: 4004
-    - match: Host(`revue-notification-db`) && PathPrefix(`/`)
-      kind: Rule
-      services:
-        - name: revue-notification-db
-          port: 27017
     - match: Host(`revue-log`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: revue-log
           port: 4003
-    - match: Host(`revue-log-db`) && PathPrefix(`/`)
-      kind: Rule
-      services:
-        - name: revue-log-db
-          port: 27017
     - match: Host(`revue-alarm`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: revue-alarm
           port: 4002
-    - match: Host(`revue-alarm-db`) && PathPrefix(`/`)
-      kind: Rule
-      services:
-        - name: revue-alarm-db
-          port: 27017
     - match: Host(`revue-location`) && PathPrefix(`/`)
       kind: Rule
       services:
         - name: revue-location
           port: 4008
-    - match: Host(`revue-location-db`) && PathPrefix(`/`)
-      kind: Rule
-      services:
-        - name: revue-location-db
-          port: 27017

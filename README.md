@@ -138,7 +138,7 @@ In the output the `PROMISC` flag should be present.
 More info in the [MetalLB troubleshooting](https://metallb.io/troubleshooting/) section.
 
 ### Helm
-
+[specifications](specifications)
 To properly run Revue, you need to install Helm, a package manager for Kubernetes.
 
 Helm is used to install Traefik, Prometheus and Grafana, which are needed to run Revue.
