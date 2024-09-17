@@ -9,4 +9,3 @@ spec:
   - ip-address-pool-traefik
   - ip-address-pool-kafka-1
   - ip-address-pool-kafka-2
-  - ip-address-pool-kafka-ui
