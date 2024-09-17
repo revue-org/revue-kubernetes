@@ -12,13 +12,13 @@ if [ $# -ne 0 ]; then
 fi
 
 # Delete all Kubernetes resources from the 'specifications' folder
-echo "Deleting all Kubernetes specifications..."
+echo "Deleting all Kubernetes entities..."
 find specifications -name '*.yaml' -exec kubectl delete -f {} \;
 
 # Uninstall Helm releases
 echo "Uninstalling Helm charts..."
-helm uninstall traefik --namespace=traefik
-helm uninstall prometheus
-helm uninstall grafana
+helm uninstall traefik --namespace=default
+helm uninstall prometheus --namespace=default
+helm uninstall grafana --namespace=default
 
 echo "Undeployment completed."
