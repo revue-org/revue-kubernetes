@@ -72,3 +72,8 @@ spec:
       services:
         - name: revue-location
           port: 4008
+    - match: Host(`revue-recognition`) && PathPrefix(`/`)
+      kind: Rule
+      services:
+        - name: revue-recognition
+          port: 4005
