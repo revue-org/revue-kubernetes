@@ -11,6 +11,8 @@ if [ $# -ne 0 ]; then
   usage
 fi
 
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
 # Helm setup and deployment of Traefik, Prometheus, and Grafana
 helm repo add traefik https://traefik.github.io/charts
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
