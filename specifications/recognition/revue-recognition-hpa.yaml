@@ -9,11 +9,11 @@ spec:
     kind: Deployment
     name: revue-recognition
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 2
   metrics:
     - type: Resource
       resource:
         name: cpu                            # Scale based on CPU usage
         target:
           type: Utilization
-          averageUtilization: 60             # Target 60% CPU utilization
+          averageUtilization: 80             # Target 60% CPU utilization
